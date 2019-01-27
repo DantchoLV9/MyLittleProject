@@ -12,7 +12,7 @@ use Auth;
 
 class ProfileController extends Controller
 {
-
+    
     function saveProfileDetails () {
 
         Auth::user()->save();

@@ -42,9 +42,8 @@
                         <input type="file" name="avatar" class="custom-file-input" id="avatarCustomFileUpload">
                         <label class="custom-file-label" for="avatarCustomFileUpload">Choose file...</label>
                       </div>
-                    
-                      <button name="reset" value="true" type="submit" class="btn btn-primary">Delete</button>
-                      <button type="submit" class="btn btn-primary">Upload</button>
+                      <button name="reset" value="true" type="submit" class="btn btn-danger">Delete</button>
+                      <button type="submit" class="btn btn-primary">Save</button>
                     </form>
                   </div>
                 </div>
@@ -53,7 +52,7 @@
             <h1>{{ Auth::user()->username }}</h1>
             <p>{{ Auth::user()->email }}</p>
           </div>
-          <form enctype="multipart/form-data" method="post" action="{{ route('profile', ['username' => mb_strtolower(Auth::user()->username, 'UTF-8')]) }}">
+          <form enctype="multipart/form-data" method="post" action="{{ route('updateProfile', ['username' => mb_strtolower(Auth::user()->username, 'UTF-8')]) }}">
             
             @csrf
             

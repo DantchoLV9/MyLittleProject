@@ -11,9 +11,13 @@
 |
 */
 
+//Home Page Route
 Route::get('/', 'HomeController@index')->name('home');
-Route::get('profile/{username}', 'ProfileController@index')->name('profile');
-Route::post('profile/{username}', 'ProfileController@updateProfile');
-Route::post('profile/{username}', 'UserAvatarController@updateUserAvatar')->name('updateUserAvatar');
 
+//Profile Page Routes
+Route::get('profile/{username}', 'ProfileController@index')->name('profile');
+Route::post('profile/update', 'ProfileController@updateProfile')->name('updateProfile');
+Route::post('profile/avatar/update', 'UserAvatarController@updateUserAvatar')->name('updateUserAvatar');
+
+//Auth Routes
 Auth::routes(['verify' => true]);
