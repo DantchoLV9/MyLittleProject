@@ -19,5 +19,8 @@ Route::get('profile/{username}', 'ProfileController@index')->name('profile');
 Route::post('profile/update', 'ProfileController@updateProfile')->name('updateProfile');
 Route::post('profile/avatar/update', 'UserAvatarController@updateUserAvatar')->name('updateUserAvatar');
 
+//Dashboard Routes
+Route::get('dashboard', 'Dashboard\HomeController@index');
+
 //Auth Routes
 Auth::routes(['verify' => true]);

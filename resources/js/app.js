@@ -32,4 +32,15 @@ const app = new Vue({
     el: '#app'
 });
 
+
+//Profile Page Avatar Change Tooltip
 $('#avatar').tooltip({ boundary: 'window' });
+
+//Dashboard Sidebar Collapse
+$(document).ready(function () {
+
+    $('#sidebarCollapse').on('click', function () {
+        $('#sidebar').toggleClass('active');
+    });
+
+});
