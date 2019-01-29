@@ -42,6 +42,17 @@ class UserAvatarController extends Controller
 
             //Generate a file, crop it, generate a path, store it
             $userUpload = $request->file('avatar');
+
+            //Check Extension Doesn't Work
+            /*$extension = $userUpload->extension();
+
+            if ($extension != 'jpeg' || $extension != 'png' || $extension != 'gif' || $extension != 'webp') {
+
+                $request->session()->flash('error', 'The uploaded file is not supported. Supported file types are: JPEG, PNG, GIF and WebP!');
+                return redirect()->route('profile', ['username' => mb_strtolower(Auth::user()->username, 'UTF-8')]);
+
+            }*/
+
             $fileName = Auth::user()->username . time() . '.' . $userUpload->getClientOriginalExtension();
             $height = Image::make($userUpload)->height();
             $avatar = Image::make($userUpload)->crop($height, $height);

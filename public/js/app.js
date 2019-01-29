@@ -47955,9 +47955,16 @@ Vue.component('example-component', __webpack_require__(/*! ./components/ExampleC
 
 var app = new Vue({
   el: '#app'
-});
+}); //Profile Page Avatar Change Tooltip
+
 $('#avatar').tooltip({
   boundary: 'window'
+}); //Dashboard Sidebar Collapse
+
+$(document).ready(function () {
+  $('#sidebarCollapse').on('click', function () {
+    $('#sidebar').toggleClass('active');
+  });
 });
 
 /***/ }),
@@ -48100,15 +48107,27 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/sass/dashboard.scss":
+/*!***************************************!*\
+  !*** ./resources/sass/dashboard.scss ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ 0:
-/*!*************************************************************!*\
-  !*** multi ./resources/js/app.js ./resources/sass/app.scss ***!
-  \*************************************************************/
+/*!*********************************************************************************************!*\
+  !*** multi ./resources/js/app.js ./resources/sass/app.scss ./resources/sass/dashboard.scss ***!
+  \*********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! D:\DevArea\WebDev\WebServer\data\htdocs\projects\MyLittleProject\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\DevArea\WebDev\WebServer\data\htdocs\projects\MyLittleProject\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! D:\DevArea\WebDev\WebServer\data\htdocs\projects\MyLittleProject\resources\sass\app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! D:\DevArea\WebDev\WebServer\data\htdocs\projects\MyLittleProject\resources\sass\dashboard.scss */"./resources/sass/dashboard.scss");
 
 
 /***/ })

@@ -15,6 +15,15 @@
         </div>
       @endif
 
+      @if (session('error'))
+        <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
+          {{ session('error') }}
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      @endif
+
       <div class="card border-secondary bg-light mt-3">
         <div class="card-header">
           My Profile
@@ -42,9 +51,8 @@
                         <input type="file" name="avatar" class="custom-file-input" id="avatarCustomFileUpload">
                         <label class="custom-file-label" for="avatarCustomFileUpload">Choose file...</label>
                       </div>
-                    
-                      <button name="reset" value="true" type="submit" class="btn btn-primary">Delete</button>
-                      <button type="submit" class="btn btn-primary">Upload</button>
+                      <button name="reset" value="true" type="submit" class="btn btn-danger">Delete</button>
+                      <button type="submit" class="btn btn-primary">Save</button>
                     </form>
                   </div>
                 </div>
@@ -53,7 +61,7 @@
             <h1>{{ Auth::user()->username }}</h1>
             <p>{{ Auth::user()->email }}</p>
           </div>
-          <form enctype="multipart/form-data" method="post" action="{{ route('profile', ['username' => mb_strtolower(Auth::user()->username, 'UTF-8')]) }}">
+          <form enctype="multipart/form-data" method="post" action="{{ route('updateProfile', ['username' => mb_strtolower(Auth::user()->username, 'UTF-8')]) }}">
             
             @csrf
             

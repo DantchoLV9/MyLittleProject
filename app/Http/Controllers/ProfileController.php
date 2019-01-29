@@ -12,7 +12,7 @@ use Auth;
 
 class ProfileController extends Controller
 {
-
+    
     function saveProfileDetails () {
 
         Auth::user()->save();
@@ -20,6 +20,8 @@ class ProfileController extends Controller
     }
     
     function updateProfile (Request $request) {
+
+    $currentEmail = Auth::user()->email;
 
     if (Auth::user()) {
 
@@ -34,6 +36,7 @@ class ProfileController extends Controller
             $this->validate($request, [
                 'email'=>'required|string|email|max:255|unique:users'
             ]);
+            Auth::user()->email_verified_at = NULL;
             Auth::user()->email = $request['email'];
         }
 
@@ -79,6 +82,14 @@ class ProfileController extends Controller
 
         }
 
+        //Send a new confirmation email if the user changed their email
+        if ($request['email'] != $currentEmail) {
+
+            Auth::user()->sendEmailVerificationNotification();
+
+        }
+
+        
         $request->session()->flash('status', 'Changes successfully saved!');
         return redirect()->route('profile', ['username' => mb_strtolower(Auth::user()->username, 'UTF-8')]);
 
@@ -91,8 +102,14 @@ class ProfileController extends Controller
 
   }
 
-    public function index($username)
+    public function index($username = NULL)
     {
+
+        if (empty($username)) {
+
+            $username = Str::lower(Auth::user()->username);
+
+        }
 
         if (Auth::check()) {
 
@@ -117,16 +134,23 @@ class ProfileController extends Controller
 
             $user = User::where('username', $username)->first();
 
-            $unEditedUsername = $user->username;
-            $email = $user->email;
-            $avatar = $user->avatar;
+            if (empty($user)) {
 
-            return view('profile', ['username' => $unEditedUsername, 'email' => $email, 'avatar' => $avatar]);
+                return abort(404);
+                
+            }
+            else {
+
+                $unEditedUsername = $user->username;
+                $email = $user->email;
+                $avatar = $user->avatar;
+
+                return view('profile', ['username' => $unEditedUsername, 'email' => $email, 'avatar' => $avatar]);
+
+            }
 
         }
 
-        
- 
     }
 
 }
