@@ -31,7 +31,7 @@
         <div class="card-body">
           <div class="text-center">
             <div data-toggle="modal" data-target="#avatarModal">
-              <img id="avatar" data-toggle="tooltip" data-placement="auto" title="Click to Upload!" class="avatar rounded-circle border border-dark img-thumbnail" alt="Profile Picture" src="{{ Storage::url('avatars/' . Auth::user()->avatar) }}">
+              <img id="avatar" data-toggle="tooltip" data-placement="auto" title="Click to Upload!" class="avatar rounded-circle border border-dark img-thumbnail" alt="Profile Picture" src="{{ asset('storage/avatars/' . Auth::user()->avatar) }}">
             </div>
             <div class="modal fade" id="avatarModal" role="dialog" aria-labelledby="avatarModalLabel" aria-hidden="true">>
               <div class="modal-dialog" role="document">
