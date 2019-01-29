@@ -48,7 +48,10 @@
                       @csrf
 
                       <div class="custom-file mb-3">
-                        <input type="file" name="avatar" class="custom-file-input" id="avatarCustomFileUpload">
+                        <input type="file" name="avatar" class="{{ $errors->has('avatar') ? ' is-invalid' : '' }} custom-file-input" id="avatarCustomFileUpload">
+                        @if ($errors->has('avatar'))
+                          <div class="invalid-feedback">{{ $errors->first('avatar') }}</div>
+                        @endif
                         <label class="custom-file-label" for="avatarCustomFileUpload">Choose file...</label>
                       </div>
                       <button name="reset" value="true" type="submit" class="btn btn-danger">Delete</button>
@@ -143,6 +146,6 @@
           </form>
         </div>
       </div>
-    </section>    
+    </section>
 
 @endsection

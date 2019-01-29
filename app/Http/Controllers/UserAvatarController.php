@@ -9,6 +9,7 @@ use Auth;
 
 class UserAvatarController extends Controller
 {
+    //Reset the users avatar to the default avatar
     public function resetUserAvatar (Request $request) {
 
         //Check if old avatar file should be deleted
@@ -40,19 +41,15 @@ class UserAvatarController extends Controller
         
         if ($request->hasFile('avatar')) {
 
-            //Generate a file, crop it, generate a path, store it
+            //Validate user upload
+            $this->validate($request,[
+                'avatar'=>'file|image|mimes:jpeg,png,gif,webp|max:2048'
+            ]);
+
+            //Get user upload
             $userUpload = $request->file('avatar');
 
-            //Check Extension Doesn't Work
-            /*$extension = $userUpload->extension();
-
-            if ($extension != 'jpeg' || $extension != 'png' || $extension != 'gif' || $extension != 'webp') {
-
-                $request->session()->flash('error', 'The uploaded file is not supported. Supported file types are: JPEG, PNG, GIF and WebP!');
-                return redirect()->route('profile', ['username' => mb_strtolower(Auth::user()->username, 'UTF-8')]);
-
-            }*/
-
+            //Generate a file, crop it, generate a path
             $fileName = Auth::user()->username . time() . '.' . $userUpload->getClientOriginalExtension();
             $height = Image::make($userUpload)->height();
             $avatar = Image::make($userUpload)->crop($height, $height);
@@ -65,6 +62,7 @@ class UserAvatarController extends Controller
 
             }
 
+            //Store the user upload after all work on it is complete
             Storage::put($avatarPath, $avatar->stream());
 
             //Check if old avatar file should be deleted
