@@ -57,6 +57,14 @@ class UserAvatarController extends Controller
             $height = Image::make($userUpload)->height();
             $avatar = Image::make($userUpload)->crop($height, $height);
             $avatarPath = 'public/avatars/' . $fileName;
+
+            //Check if the avatars folder exists inside storage/public and create it if it doesn't
+            if (!Storage::disk('local')->exists('public/avatars')) {
+
+                Storage::makeDirectory('public/avatars');
+
+            }
+
             Storage::put($avatarPath, $avatar->stream());
 
             //Check if old avatar file should be deleted
