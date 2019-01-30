@@ -1,6 +1,7 @@
 # MyLittleProject
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/8a32c9ebe3164368a16dcdf5a874049c)](https://app.codacy.com/app/dantcho.bg/MyLittleProject?utm_source=github.com&utm_medium=referral&utm_content=Dantcho-BG/MyLittleProject&utm_campaign=Badge_Grade_Settings)
+![](https://img.shields.io/discord/406600571269677057.svg?colorB=7289DA&label=Discord&style=flat)
 
 A Simple Way To Share Your Projects
 
