@@ -7,6 +7,8 @@
 
 require('./bootstrap');
 
+import bsCustomFileInput from 'bs-custom-file-input';
+
 window.Vue = require('vue');
 
 /**
@@ -35,6 +37,23 @@ const app = new Vue({
 
 //Profile Page Avatar Change Tooltip
 $('#avatar').tooltip({ boundary: 'window' });
+
+var avatarInputFieldElement = document.getElementById('avatarCustomFileUpload');
+
+    if (avatarInputFieldElement) {
+
+    //Avatar Modal Open If Upload Field Has An Error
+    $(document).ready(function () {
+
+        bsCustomFileInput.init()
+
+        if (avatarInputFieldElement.className.indexOf('is-invalid') != -1) {
+            $('#avatarModal').modal();
+        }
+
+    });
+
+}
 
 //Dashboard Sidebar Collapse
 $(document).ready(function () {

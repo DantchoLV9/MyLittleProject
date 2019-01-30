@@ -12,19 +12,16 @@ use Auth;
 
 class ProfileController extends Controller
 {
-    
-    function saveProfileDetails () {
-
-        Auth::user()->save();
-
-    }
-    
+    //Profile update form validation
     function updateProfile (Request $request) {
 
+    //Get the current email of the user
     $currentEmail = Auth::user()->email;
 
+    //Validation
     if (Auth::user()) {
 
+        //Validate the username
         if ($request["username"] != Auth::user()->username) {
             $this->validate($request,[
                 'username'=>'required|string|max:255|unique:users'
@@ -32,14 +29,18 @@ class ProfileController extends Controller
             Auth::user()->username = $request["username"];
         }
 
+        //Validate the email
         if ($request["email"] != Auth::user()->email) {
             $this->validate($request, [
                 'email'=>'required|string|email|max:255|unique:users'
             ]);
+            
+            //Make email not verified
             Auth::user()->email_verified_at = NULL;
             Auth::user()->email = $request['email'];
         }
 
+        //Validate the password
         if (!empty($request["password"])) {
 
             $this->validate($request, [
@@ -54,6 +55,7 @@ class ProfileController extends Controller
 
         }
 
+        //Validate the current password
         if (!empty($request["current_password"])) {
 
             $this->validate($request, [
@@ -71,9 +73,10 @@ class ProfileController extends Controller
 
             }
 
-            $this -> saveProfileDetails();
+            Auth::user()->save();
 
         }
+        //ATTENTION - Check the logic below
         elseif (!empty($request["username"]) || !empty($request["email"]) || !empty($request["password"]) && empty($request["current_password"])) {
 
             $this->validate($request, [
@@ -89,28 +92,32 @@ class ProfileController extends Controller
 
         }
 
-        
+        //Status message and redirect to profile page
         $request->session()->flash('status', 'Changes successfully saved!');
         return redirect()->route('profile', ['username' => mb_strtolower(Auth::user()->username, 'UTF-8')]);
 
         }
         else {
-
+        
+        //Return to the home page if the user is not logged in
         return redirect()->route('home');
 
         }
 
   }
 
+    //Returns the profile page of a specified user
     public function index($username = NULL)
     {
 
+        //If a username isn't given use the username of the user sending the request
         if (empty($username)) {
 
             $username = Str::lower(Auth::user()->username);
 
         }
 
+        //Check if the email of the user is verified
         if (Auth::check()) {
 
             if (!Auth::user()->hasVerifiedEmail()) {
@@ -121,8 +128,10 @@ class ProfileController extends Controller
 
         }
 
+        //Determine wheather the profile page of the user that send the request or the profile page of another user should be returned
         if (Str::lower($username) == Str::lower(Auth::user()->username)) {
 
+            //ATTENTION - Probably should remove this
             $ownProfilePage = true;
 
             return view('ownprofile');
@@ -130,10 +139,12 @@ class ProfileController extends Controller
         }
         else {
 
+            ///ATTENTION - Probably should remove this
             $ownProfilePage = false;
 
             $user = User::where('username', $username)->first();
 
+            //If a user with that username doesn't exist return a 404 error page. Otherwise return the profile page of the specified user
             if (empty($user)) {
 
                 return abort(404);
@@ -141,6 +152,7 @@ class ProfileController extends Controller
             }
             else {
 
+                //Collect data for the requested user
                 $unEditedUsername = $user->username;
                 $email = $user->email;
                 $avatar = $user->avatar;

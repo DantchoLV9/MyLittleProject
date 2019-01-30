@@ -35,7 +35,7 @@
                     @else
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            <img class="sm-avatar rounded-circle" alt="Profile Picture" src="{{ Storage::url('avatars/' . Auth::user()->avatar) }}">
+                            <img class="sm-avatar rounded-circle" alt="Avatar" src="{{ asset('storage/avatars/' . Auth::user()->avatar) }}">
                             {{ Auth::user()->username }} <span class="caret"></span>
                             </a>
 

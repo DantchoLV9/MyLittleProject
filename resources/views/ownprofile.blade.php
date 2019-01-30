@@ -15,15 +15,6 @@
         </div>
       @endif
 
-      @if (session('error'))
-        <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
-          {{ session('error') }}
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-      @endif
-
       <div class="card border-secondary bg-light mt-3">
         <div class="card-header">
           My Profile
@@ -31,7 +22,7 @@
         <div class="card-body">
           <div class="text-center">
             <div data-toggle="modal" data-target="#avatarModal">
-              <img id="avatar" data-toggle="tooltip" data-placement="auto" title="Click to Upload!" class="avatar rounded-circle border border-dark img-thumbnail" alt="Profile Picture" src="{{ Storage::url('avatars/' . Auth::user()->avatar) }}">
+              <img id="avatar" data-toggle="tooltip" data-placement="auto" title="Click to Upload!" class="avatar rounded-circle border border-dark img-thumbnail" alt="Profile Picture" src="{{ asset('storage/avatars/' . Auth::user()->avatar) }}">
             </div>
             <div class="modal fade" id="avatarModal" role="dialog" aria-labelledby="avatarModalLabel" aria-hidden="true">>
               <div class="modal-dialog" role="document">
@@ -48,7 +39,10 @@
                       @csrf
 
                       <div class="custom-file mb-3">
-                        <input type="file" name="avatar" class="custom-file-input" id="avatarCustomFileUpload">
+                        <input type="file" name="avatar" class="{{ $errors->has('avatar') ? ' is-invalid' : '' }} custom-file-input" id="avatarCustomFileUpload">
+                        @if ($errors->has('avatar'))
+                          <div class="invalid-feedback">{{ $errors->first('avatar') }}</div>
+                        @endif
                         <label class="custom-file-label" for="avatarCustomFileUpload">Choose file...</label>
                       </div>
                       <button name="reset" value="true" type="submit" class="btn btn-danger">Delete</button>
@@ -143,6 +137,6 @@
           </form>
         </div>
       </div>
-    </section>    
+    </section>
 
 @endsection
