@@ -9,7 +9,7 @@
         <ul class="list-unstyled components">
           <li>
             <a href="{{ route('dashboard') }}">
-              <i class="fas fa-tachometer-alt"></i>
+              <i class="fas fa-home"></i>
               Home
             </a>
           </li>

@@ -1,19 +1,12 @@
 @extends('dashboard.layouts.app')
 @extends('dashboard.layouts.navigationbar')
 @extends('dashboard.layouts.sidenavigationbar')
+@extends('dashboard.layouts.pagedetails')
+@section('pagetitle', 'Dashboard')
 
 @section('content')
 
-    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
-          <h2 class="col-xl-6 col-lg-6 col-md-6 col-12">Dashboard</h2>
-          <nav class="col-xl-6 col-lg-6 col-md-6 col-12" aria-label="breadcrumb">
-            <ol class="breadcrumb dashboard-breadcrumb">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item"><a href="#">Library</a></li>
-              <li class="breadcrumb-item active" aria-current="page">Data</li>
-            </ol>
-          </nav>
-        </div>
+        
         <div class="card border-secondary bg-light mt-3">
           <div class="card-header">
             Dashboard
