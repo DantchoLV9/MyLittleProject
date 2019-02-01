@@ -16,13 +16,21 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false">
-                            Profile
+                            {{ Auth::user()->username }}<span class="caret"></span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="../profile.html">View Profile</a>
-                            <a class="dropdown-item" href="../index.html">Website</a>
+                            <a class="dropdown-item" href="{{ route('profile', ['username' => mb_strtolower(Auth::user()->username, 'UTF-8')]) }}">View Profile</a>
+                            <a class="dropdown-item" href="{{ route('home') }}">View Website</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Logout</a>
+                            <a class="dropdown-item" href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();">
+                                {{ __('Logout') }}
+                            </a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
                         </div>
                     </li>
                 </ul>
