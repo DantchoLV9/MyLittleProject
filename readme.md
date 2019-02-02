@@ -59,6 +59,6 @@ php artisan storage:link
 
 ## Built With
 
-* [Laravel](https://laravel.com/) - The web framework
-* [Bootstrap](https://getbootstrap.com/) - CSS framework
-* [Intervention Image](http://image.intervention.io/) - Used for image managing
+*   [Laravel](https://laravel.com/) - The web framework
+*   [Bootstrap](https://getbootstrap.com/) - CSS framework
+*   [Intervention Image](http://image.intervention.io/) - Used for image managing
