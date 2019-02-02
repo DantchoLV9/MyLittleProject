@@ -32,6 +32,7 @@ Route::middleware(['auth', 'isadmin'])->group(function () {
 
 //Dashboard Routes
 Route::get('dashboard', 'Dashboard\HomeController@index')->name('dashboard');
+Route::get('dashboard/projects', 'Dashboard\Projects\View@index')->name('projectsView');
 Route::get('dashboard/settings/general', 'Dashboard\Settings\General@index')->name('settingsGeneral');
 
 });

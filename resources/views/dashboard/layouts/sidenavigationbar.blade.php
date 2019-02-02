@@ -14,6 +14,17 @@
             </a>
           </li>
           <li>
+            <a href="#projectsSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+              <i class="fas fa-project-diagram"></i>
+              Projects
+            </a>
+            <ul class="collapse list-unstyled" id="projectsSubmenu">
+              <li>
+                <a href="{{ route('projectsView') }}">View Projects</a>
+              </li>
+            </ul>
+          </li>
+          <li>
             <a href="#settingsSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
               <i class="fas fa-sliders-h"></i>
               Settings
