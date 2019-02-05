@@ -45,7 +45,7 @@ var avatarInputFieldElement = document.getElementById('avatarCustomFileUpload');
     //Avatar Modal Open If Upload Field Has An Error
     $(document).ready(function () {
 
-        bsCustomFileInput.init()
+        bsCustomFileInput.init();
 
         if (avatarInputFieldElement.className.indexOf('is-invalid') != -1) {
             $('#avatarModal').modal();

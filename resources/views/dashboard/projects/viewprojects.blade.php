@@ -14,10 +14,11 @@
           <div class="card-body">
             <div>
               <div class="col-xl-3 col-lg-3 col-md-12 col-12 float-left mb-3">
-                <form>
-                  <select class="custom-select">
-                    <option selected>Show items per page</option>
-                    <option type="submit" value="1">15</option>
+                <form method="POST" action="{{ route('projectsViewItemsPerPageAmountSelect') }}">
+                  @csrf
+                  <select name="items-per-page-select" class="custom-select" onchange="this.form.submit()">
+                    <option selected disabled>Show items per page</option>
+                    <option value="1">15</option>
                     <option value="2">30</option>
                     <option value="3">50</option>
                   </select>
