@@ -24,26 +24,23 @@
                   </select>
                 </form>
               </div>
-              <div class="col-xl-3 col-lg-3 col-md-12 col-12 float-right">
+              <div class="col-xl-4 col-lg-6 col-md-12 col-12 float-right">
                 <form method="GET" action="{{ route('projectsView') }}">
                   <div class="input-group mb-3">
                     <input name="search" type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="searchSubmitButton">
+                    <select name="sort-by" class="custom-select">
+                      <option disabled selected>Sort by</option>
+                      <option value="1">Name: A - Z</option>
+                      <option value="2">Name: Z - A</option>
+                      <option value="3">ID - 1 - 9</option>
+                      <option value="4">ID - 9 - 1</option>
+                    </select>
                     <div class="input-group-append">
                       <button class="btn btn-outline-secondary" type="submit" id="searchSubmitButton">
                         <i class="fas fa-search"></i>
                       </button>
                     </div>
                   </div>
-                </form>
-              </div>
-              <div class="col-xl-3 col-lg-3 col-md-12 col-12 float-right mb-3">
-                <form>
-                  <select class="custom-select">
-                    <option selected>Sort by</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
-                  </select>
                 </form>
               </div>
             </div>

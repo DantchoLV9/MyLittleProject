@@ -47,23 +47,52 @@ class View extends Controller
 
         $paginationItemsPerPage = session('viewProjectsPageItemsPerPage');
 
-        //Get search field data
+        //Get all data from get forms
         $search = Input::get("search");
+        $sortBy = Input::get("sort-by");
+        
+        $field = "id";
+        $sortOption = "asc";
+
+        if ($sortBy == 1) {
+            $field = "project_name";
+            $sortOption = "asc";
+        }
+
+        if ($sortBy == 2) {
+            $field = "project_name";
+            $sortOption = "desc";
+        }
+        
+        if ($sortBy == 3) {
+            $field = "id";
+            $sortOption = "asc";
+        }
+
+        if ($sortBy == 4) {
+            $field = "id";
+            $sortOption = "desc";
+        }
 
         //Check if search filed contains anything
-        if (!empty($search)) {
+        if (!empty($search) || !empty($sortBy)) {
 
             //Get all projects with a name similar to the search input and paginate them
             $projects = Project::where("project_name", 'LIKE', "%$search%")
+            ->orderBy($field, $sortOption)
             ->paginate($paginationItemsPerPage);
 
-            //Append the search field URL GET parameters to the paginaation
-            $projects->appends(request()->input())->links();
+            //Append the search field URL GET parameters to the pagination
+            //$projects->appends(request()->input())->links();
+            $projects->appends(['search' => $search, 'sort-by' => $sortBy])->render();
+
+            //Return "Dashborad.Projects.View" with projects data.
+            return view('dashboard.projects.viewprojects', ['projects' => $projects]);
 
         }
-        else {
-            $projects = Project::paginate($paginationItemsPerPage);
-        }
+
+        //Get all projects        
+        $projects = Project::paginate($paginationItemsPerPage);
 
         //Return "Dashborad.Projects.View" with projects data.
         return view('dashboard.projects.viewprojects', ['projects' => $projects]);
