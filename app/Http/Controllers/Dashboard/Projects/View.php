@@ -21,18 +21,19 @@ class View extends Controller
                 $request->validate([
                     'items-per-page-select'=>'between:1,3|numeric'
                 ]);
+
+                session(['viewProjectsPageItemsPerPage' => 15]);
                 
                 if ($request["items-per-page-select"] == 1) {
                     session(['viewProjectsPageItemsPerPage' => 15]);
                 }
-                elseif ($request["items-per-page-select"] == 2) {
+
+                if ($request["items-per-page-select"] == 2) {
                     session(['viewProjectsPageItemsPerPage' => 30]);
                 }
-                elseif ($request["items-per-page-select"] == 3) {
+                
+                if ($request["items-per-page-select"] == 3) {
                     session(['viewProjectsPageItemsPerPage' => 50]);
-                }
-                else {
-                    session(['viewProjectsPageItemsPerPage' => 15]);
                 }
 
             }
@@ -45,7 +46,7 @@ class View extends Controller
     
     public function index () {
 
-        $paginationItemsPerPage = session('viewProjectsPageItemsPerPage');
+        $itemsPerPage = session('viewProjectsPageItemsPerPage');
 
         //Get all data from get forms
         $search = Input::get("search");
@@ -80,7 +81,7 @@ class View extends Controller
             //Get all projects with a name similar to the search input and paginate them
             $projects = Project::where("project_name", 'LIKE', "%$search%")
             ->orderBy($field, $sortOption)
-            ->paginate($paginationItemsPerPage);
+            ->paginate($itemsPerPage);
 
             //Append the search field URL GET parameters to the pagination
             //$projects->appends(request()->input())->links();
@@ -92,7 +93,7 @@ class View extends Controller
         }
 
         //Get all projects        
-        $projects = Project::paginate($paginationItemsPerPage);
+        $projects = Project::paginate($itemsPerPage);
 
         //Return "Dashborad.Projects.View" with projects data.
         return view('dashboard.projects.viewprojects', ['projects' => $projects]);
