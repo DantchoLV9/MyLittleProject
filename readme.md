@@ -23,6 +23,10 @@ composer install
 ```
 ### Install NPM Dependencies
 ```bash
+npm install
+```
+### Compile CSS and JS files
+```bash
 npm run dev
 ```
 ### Make a copy of the .env file
