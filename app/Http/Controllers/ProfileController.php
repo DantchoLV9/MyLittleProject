@@ -47,7 +47,7 @@ class ProfileController extends Controller
                 'password' => [
                     'required',
                     'string',
-                    'min:6',
+                    'min:8',
                     'confirmed',
                     new SameNewPasswordValidationRule($request["password"]),
                 ]
@@ -62,7 +62,7 @@ class ProfileController extends Controller
                 'current_password' => [
                     'required',
                     'string',
-                    'min:6',
+                    'min:8',
                     new PasswordCheckValidationRule($request["current_password"]),
                 ]
             ]);
