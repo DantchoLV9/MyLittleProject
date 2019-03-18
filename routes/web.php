@@ -34,6 +34,8 @@ Route::middleware(['auth', 'isadmin'])->group(function () {
 Route::get('dashboard', 'Dashboard\HomeController@index')->name('dashboard');
 Route::get('dashboard/projects', 'Dashboard\Projects\View@index')->name('projectsView');
 Route::post('dashboard/projects', 'Dashboard\Projects\View@itemPerPageAmountSelect')->name('projectsViewItemsPerPageAmountSelect');
+Route::get('dashboard/projects/{projectID}/delete', 'Dashboard\Projects\DeleteProjectController@index')->name('deleteProjectConfirmation');
+Route::post('dashboard/projects/{projectID}/delete', 'Dashboard\Projects\DeleteProjectController@index')->name('deleteProject');
 Route::get('dashboard/settings/general', 'Dashboard\Settings\General@index')->name('settingsGeneral');
 
 });
