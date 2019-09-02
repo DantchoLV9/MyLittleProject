@@ -6,7 +6,7 @@
 
 @section('content')
 
-        
+
         <div class="card border-secondary bg-light mt-3">
           <div class="card-header">
             Projects - Showing {{ $projects->count() }} out of {{ $projects->total() }} results
@@ -62,9 +62,9 @@
                     <th scope="row">{{ $project->project_description }}</th>
                     <th scope="col">
                       <div class="btn-group" role="group" aria-label="Basic example">
-                        <button type="button" class="btn btn-secondary">Left</button>
-                        <button type="button" class="btn btn-secondary">Middle</button>
-                        <button type="button" class="btn btn-secondary">Right</button>
+                        <a class="btn btn-success">View</a>
+                        <a class="btn btn-primary">Edit</a>
+                        <a href="{{ route('deleteProject', ['projectID' => $project->id]) }}" class="btn btn-danger">Delete</a>
                       </div>
                     </th>
                   </tr>
@@ -80,7 +80,7 @@
                 </tfoot>
               </table>
             </div>
-            
+
           </div>
           <div class="card-footer text-muted">
             {{ $projects->onEachSide(1)->links() }}
