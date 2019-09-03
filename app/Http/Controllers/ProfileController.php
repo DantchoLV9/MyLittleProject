@@ -24,7 +24,7 @@ class ProfileController extends Controller
         //Validate the username
         if ($request["username"] != Auth::user()->username) {
             $this->validate($request,[
-                'username'=>'required|string|max:255|unique:users'
+                'username'=>'required|string|max:255|unique:users|not_regex:/(\/)/u'
             ]);
             Auth::user()->username = $request["username"];
         }
