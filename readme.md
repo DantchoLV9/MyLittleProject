@@ -7,6 +7,9 @@
 <a href="https://discord.gg/7dV6WvM">
 <img alt="Discord Server Badge" src="https://img.shields.io/discord/406600571269677057.svg?colorB=7289DA&label=discord&style=flat">
 </a>
+<a href="https://codeclimate.com/github/DantchoLV9/MyLittleProject/maintainability">
+<img src="https://api.codeclimate.com/v1/badges/3f3d66f0d7f9e83530f3/maintainability" />
+</a>
 </p>
 
 ## About MyLittleProject
